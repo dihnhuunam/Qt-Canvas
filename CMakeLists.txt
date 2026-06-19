@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
 set(QT_QML_GENERATE_QMLLS_INI ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -19,5 +19,6 @@ add_subdirectory(ui)
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt6::Quick
+        Qt6::QuickControls2
         uiplugin  # auto-generated target from qt_add_qml_module (target + plugin)
 )
