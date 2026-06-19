@@ -19,5 +19,5 @@ add_subdirectory(ui)
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt6::Quick
-        uiplugin  # auto-generated target from qt_add_qml_module
+        uiplugin  # auto-generated target from qt_add_qml_module (target + plugin)
 )
