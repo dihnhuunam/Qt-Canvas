@@ -15,10 +15,12 @@ qt_add_executable(${PROJECT_NAME}
 )
 
 add_subdirectory(ui)
+add_subdirectory(model)
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         Qt6::Quick
         Qt6::QuickControls2
         uiplugin  # auto-generated target from qt_add_qml_module (target + plugin)
+        model
 )

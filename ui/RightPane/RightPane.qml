@@ -10,7 +10,7 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        z: scrollView.z + 1
+        z: configurePane.z + 1
         propagateComposedEvents: true
         onPressed: function (mouse) {
             rightPane.forceActiveFocus();
@@ -19,7 +19,7 @@ Rectangle {
     }
 
     ScrollView {
-        id: scrollView
+        id: configurePane
         anchors.fill: parent
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AlwaysOn
@@ -27,7 +27,7 @@ Rectangle {
         contentWidth: availableWidth
 
         ColumnLayout {
-            width: scrollView.availableWidth - scrollView.ScrollBar.vertical.width - 2
+            width: configurePane.availableWidth - configurePane.ScrollBar.vertical.width - 2
 
             Item {
                 height: 12
