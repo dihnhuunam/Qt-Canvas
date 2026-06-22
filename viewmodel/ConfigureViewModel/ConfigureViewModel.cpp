@@ -1,5 +1,6 @@
 #include "ConfigureViewModel.h"
 
+#include <QDebug>
 #include <cmath>
 
 namespace {
@@ -24,6 +25,7 @@ double ConfigureViewModel::getPhase() const { return mSignal.getPhase(); }
 
 void ConfigureViewModel::setAmplitude(double nAmplitude) {
   if (doubleCompare(getAmplitude(), nAmplitude, 1000.0)) {
+    qDebug() << nAmplitude;
     return;
   }
 
