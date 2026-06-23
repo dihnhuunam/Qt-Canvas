@@ -10,7 +10,7 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        z: scrollView.z + 1
+        z: configurePane.z + 1
         propagateComposedEvents: true
         onPressed: function (mouse) {
             rightPane.forceActiveFocus();
@@ -19,7 +19,7 @@ Rectangle {
     }
 
     ScrollView {
-        id: scrollView
+        id: configurePane
         anchors.fill: parent
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AlwaysOn
@@ -27,7 +27,7 @@ Rectangle {
         contentWidth: availableWidth
 
         ColumnLayout {
-            width: scrollView.availableWidth - scrollView.ScrollBar.vertical.width - 2
+            width: configurePane.availableWidth - configurePane.ScrollBar.vertical.width - 2
 
             Item {
                 height: 12
@@ -51,17 +51,25 @@ Rectangle {
                     spacing: 8
                     CustomLine {
                         id: ip
-                        label.text: "IP"
-                        label.font.pixelSize: 16
-                        textField.placeholderText: "Enter IP"
+                        labelText: "IP"
+                        placeholderText: "Enter IP"
                         Layout.fillWidth: true
+                        validator: RegularExpressionValidator {
+                            regularExpression: /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/
+                        }
+                        onEditingFinished: text => configureViewModel.ipAddress = text
                     }
+
                     CustomLine {
                         id: port
-                        label.text: "Port"
-                        label.font.pixelSize: 16
-                        textField.placeholderText: "Enter Port"
+                        labelText: "Port"
+                        placeholderText: "Enter Port"
                         Layout.fillWidth: true
+                        validator: IntValidator {
+                            bottom: 0
+                            top: 65535
+                        }
+                        onEditingFinished: text => configureViewModel.port = parseInt(text)
                     }
                     Button {
                         text: "Connect"
@@ -89,22 +97,49 @@ Rectangle {
                     anchors.fill: parent
                     spacing: 8
                     CustomLine {
-                        label.text: "Amplitude"
-                        label.font.pixelSize: 16
-                        textField.placeholderText: "Enter Amplitude"
+                        labelText: "Amplitude"
+                        placeholderText: "Enter amplitude"
+                        validator: DoubleValidator {
+                            decimals: 3
+                        }
                         Layout.fillWidth: true
+                        onEditingFinished: text => {
+                            const value = parseFloat(text);
+                            if (!isNaN(value)) {
+                                configureViewModel.amplitude = value;
+                                console.log("Amplitude:", value);
+                            }
+                        }
                     }
                     CustomLine {
-                        label.text: "Frequency"
-                        label.font.pixelSize: 16
-                        textField.placeholderText: "Enter Frequency"
+                        labelText: "Frequency"
+                        placeholderText: "Enter Frequency"
+                        validator: DoubleValidator {
+                            decimals: 3
+                        }
                         Layout.fillWidth: true
+                        onEditingFinished: text => {
+                            const value = parseFloat(text);
+                            if (!isNaN(value)) {
+                                configureViewModel.amplitude = value;
+                                console.log("Frequency:", value);
+                            }
+                        }
                     }
                     CustomLine {
-                        label.text: "Phase"
-                        label.font.pixelSize: 16
-                        textField.placeholderText: "Enter Phase"
+                        labelText: "Phase"
+                        placeholderText: "Enter Phase"
+                        validator: DoubleValidator {
+                            decimals: 3
+                        }
                         Layout.fillWidth: true
+                        onEditingFinished: text => {
+                            const value = parseFloat(text);
+                            if (!isNaN(value)) {
+                                configureViewModel.amplitude = value;
+                                console.log("Phase:", value);
+                            }
+                        }
                     }
                 }
             }
