@@ -5,20 +5,20 @@
 
 #include "ConfigureViewModel.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
-  QGuiApplication app(argc, argv);
-  QQmlApplicationEngine engine;
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
 
-  ConfigureViewModel configureViewModel;
-  engine.rootContext()->setContextProperty("configureViewModel",
-                                           &configureViewModel);
+    ConfigureViewModel configureViewModel;
+    engine.rootContext()->setContextProperty("configureViewModel", &configureViewModel);
 
-  QObject::connect(
-      &engine, &QQmlApplicationEngine::objectCreationFailed, &app,
-      []() { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
-  QQuickStyle::setStyle("Material");
-  engine.loadFromModule("UI", "Main");
+    QObject::connect(
+        &engine, &QQmlApplicationEngine::objectCreationFailed, &app, []() { QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
+    QQuickStyle::setStyle("Material");
+    engine.loadFromModule("UI", "Main");
 
-  return QGuiApplication::exec();
+    return QGuiApplication::exec();
 }
