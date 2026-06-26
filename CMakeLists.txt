@@ -5,6 +5,10 @@ project(
   VERSION 0.1
   LANGUAGES CXX)
 
+# Qt Compiler
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
 # C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -22,13 +26,13 @@ qt_standard_project_setup(REQUIRES 6.5)
 qt_policy(SET QTP0004 NEW)
 
 # Application target
-qt_add_executable(${PROJECT_NAME} main.cpp)
+qt_add_executable(${PROJECT_NAME} main.cpp ui/resource.qrc)
 
 # Internal modules
-add_subdirectory(ui)
 add_subdirectory(model)
 add_subdirectory(viewmodel)
+add_subdirectory(event)
 
 # Link dependencies
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Quick Qt6::QuickControls2 ui
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Quick Qt6::QuickControls2
                                               model viewmodel)

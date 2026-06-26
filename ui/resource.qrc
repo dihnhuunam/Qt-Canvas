@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/UI">
+        <file>Main.qml</file>
+        <file>RightPane/RightPane.qml</file>
+        <file>RightPane/CustomLine.qml</file>
+        <file>LeftPane/LeftPane.qml</file>
+    </qresource>
+</RCC>

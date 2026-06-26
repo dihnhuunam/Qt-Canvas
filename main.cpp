@@ -2,13 +2,16 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
+#include <QUrl>
 
 #include "ConfigureViewModel.h"
 
 int main(int argc, char *argv[])
 {
-
     QGuiApplication app(argc, argv);
+
+    QQuickStyle::setStyle("Material");
+
     QQmlApplicationEngine engine;
 
     ConfigureViewModel configureViewModel;
@@ -17,8 +20,9 @@ int main(int argc, char *argv[])
     QObject::connect(
         &engine, &QQmlApplicationEngine::objectCreationFailed, &app, []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    QQuickStyle::setStyle("Material");
-    engine.loadFromModule("UI", "Main");
+
+    const QUrl url("qrc:/UI/Main.qml");
+    engine.load(url);
 
     return QGuiApplication::exec();
 }

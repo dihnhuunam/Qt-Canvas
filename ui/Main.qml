@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
+import "./RightPane"
+import "./LeftPane"
 
 Window {
     id: root
