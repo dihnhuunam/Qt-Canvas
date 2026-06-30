@@ -35,4 +35,4 @@ add_subdirectory(event)
 
 # Link dependencies
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Quick Qt6::QuickControls2
-                                              model viewmodel)
+                                              event model viewmodel)
